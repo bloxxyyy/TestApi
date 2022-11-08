@@ -1,5 +1,5 @@
 
-package com.geekstack.demo.model;
+package com.geekstack.demo.model.tempo;
 
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -9,18 +9,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "self",
-    "votes",
-    "hasVoted"
+    "accountId"
 })
 @Generated("jsonschema2pojo")
-public class Votes {
+public class Author {
 
     @JsonProperty("self")
     private String self;
-    @JsonProperty("votes")
-    private int votes;
-    @JsonProperty("hasVoted")
-    private boolean hasVoted;
+    @JsonProperty("accountId")
+    private String accountId;
 
     @JsonProperty("self")
     public String getSelf() {
@@ -32,41 +29,27 @@ public class Votes {
         this.self = self;
     }
 
-    @JsonProperty("votes")
-    public int getVotes() {
-        return votes;
+    @JsonProperty("accountId")
+    public String getAccountId() {
+        return accountId;
     }
 
-    @JsonProperty("votes")
-    public void setVotes(int votes) {
-        this.votes = votes;
-    }
-
-    @JsonProperty("hasVoted")
-    public boolean isHasVoted() {
-        return hasVoted;
-    }
-
-    @JsonProperty("hasVoted")
-    public void setHasVoted(boolean hasVoted) {
-        this.hasVoted = hasVoted;
+    @JsonProperty("accountId")
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Votes.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Author.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("self");
         sb.append('=');
         sb.append(((this.self == null)?"<null>":this.self));
         sb.append(',');
-        sb.append("votes");
+        sb.append("accountId");
         sb.append('=');
-        sb.append(this.votes);
-        sb.append(',');
-        sb.append("hasVoted");
-        sb.append('=');
-        sb.append(this.hasVoted);
+        sb.append(((this.accountId == null)?"<null>":this.accountId));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

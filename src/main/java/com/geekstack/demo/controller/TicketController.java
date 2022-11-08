@@ -1,20 +1,15 @@
 package com.geekstack.demo.controller;
 
-import com.geekstack.demo.model.Tickets;
+import com.geekstack.demo.model.tempo.Worklog;
 import com.geekstack.demo.service.JiraTicketService;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 
 @RestController
@@ -70,7 +65,15 @@ public class TicketController {
 	@GetMapping("/tickets.getIssue")
 	public ResponseEntity<String> getIssue() {
 		ResponseEntity<String> response = restTemplate.exchange(
-				"https://test1app2koko3.atlassian.net/rest/api/2/issue/10006", HttpMethod.GET, new HttpEntity(jiraGetHeaders()), String.class);
+				"https://test1app2koko3.atlassian.net/rest/api/2/issue/10001", HttpMethod.GET, new HttpEntity(jiraGetHeaders()), String.class);
+
+		return new ResponseEntity<String>(response.getBody(), HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping("/field")
+	public ResponseEntity<String> getField() {
+		ResponseEntity<String> response = restTemplate.exchange(
+				"https://test1app2koko3.atlassian.net/rest/api/3/field", HttpMethod.GET, new HttpEntity(jiraGetHeaders()), String.class);
 
 		return new ResponseEntity<String>(response.getBody(), HttpStatus.ACCEPTED);
 	}
@@ -112,7 +115,7 @@ public class TicketController {
 		var accountId = "5a7f9c24857e333eafe7973c";
 
 		ResponseEntity<String> response = restTemplate.exchange(
-				"https://api.tempo.io/4/worklogs/user/" + accountId, HttpMethod.GET, new HttpEntity(header), String.class);
+				"https://api.tempo.io/4/worklogs/user/" + accountId, HttpMethod.GET, new HttpEntity<Worklog>(header), String.class);
 
 		return new ResponseEntity<String>(response.getBody(), HttpStatus.ACCEPTED);
 

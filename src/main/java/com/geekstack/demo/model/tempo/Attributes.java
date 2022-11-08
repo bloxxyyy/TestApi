@@ -1,6 +1,7 @@
 
-package com.geekstack.demo.model;
+package com.geekstack.demo.model.tempo;
 
+import java.util.List;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,18 +10,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "self",
-    "watchCount",
-    "isWatching"
+    "values"
 })
 @Generated("jsonschema2pojo")
-public class Watches {
+public class Attributes {
 
     @JsonProperty("self")
     private String self;
-    @JsonProperty("watchCount")
-    private int watchCount;
-    @JsonProperty("isWatching")
-    private boolean isWatching;
+    @JsonProperty("values")
+    private List<Value> values = null;
 
     @JsonProperty("self")
     public String getSelf() {
@@ -32,41 +30,27 @@ public class Watches {
         this.self = self;
     }
 
-    @JsonProperty("watchCount")
-    public int getWatchCount() {
-        return watchCount;
+    @JsonProperty("values")
+    public List<Value> getValues() {
+        return values;
     }
 
-    @JsonProperty("watchCount")
-    public void setWatchCount(int watchCount) {
-        this.watchCount = watchCount;
-    }
-
-    @JsonProperty("isWatching")
-    public boolean isIsWatching() {
-        return isWatching;
-    }
-
-    @JsonProperty("isWatching")
-    public void setIsWatching(boolean isWatching) {
-        this.isWatching = isWatching;
+    @JsonProperty("values")
+    public void setValues(List<Value> values) {
+        this.values = values;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Watches.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Attributes.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("self");
         sb.append('=');
         sb.append(((this.self == null)?"<null>":this.self));
         sb.append(',');
-        sb.append("watchCount");
+        sb.append("values");
         sb.append('=');
-        sb.append(this.watchCount);
-        sb.append(',');
-        sb.append("isWatching");
-        sb.append('=');
-        sb.append(this.isWatching);
+        sb.append(((this.values == null)?"<null>":this.values));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

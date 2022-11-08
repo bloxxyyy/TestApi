@@ -3,7 +3,6 @@ package com.geekstack.demo.service;
 import java.nio.charset.Charset;
 
 import com.geekstack.demo.CreateTicketModel.JiraPayload;
-import com.geekstack.demo.model.Tickets;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,27 +50,5 @@ public class JiraTicketService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Authorization", authHeader);
 		return headers;
-	}
-
-	public String getJiraTickets() {
-
-		System.out.println(baseUrl.concat(ticketsLoadingUrl));
-		ResponseEntity<String> response = restTemplate.exchange(baseUrl.concat(ticketsLoadingUrl), HttpMethod.GET,
-				new HttpEntity<Tickets>(getHeaders()), String.class);
-
-		if (response != null) {
-			return response.getBody();
-		}
-		return null;
-	}
-
-	public String alterTest() {
-		System.out.println(baseUrl.concat(ticketsLoadingUrl));
-		ResponseEntity<Tickets> response = restTemplate.exchange(baseUrl.concat(ticketsLoadingUrl), HttpMethod.GET, new HttpEntity<Tickets>(getHeaders()), Tickets.class);
-		var data = response.getBody();
-
-
-
-		return null;
 	}
 }
