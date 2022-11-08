@@ -48,6 +48,62 @@ public class TicketController {
 		return headers;
 	}
 
+	@Value("${jira.user-name}")
+	private String username;
+	@Value("${jira.secret}")
+	private String secret;
+	@Value("${jira.base-url}")
+	private String baseUrl;
+	@Value("${jira.ticket-url}")
+	private String ticketCreationUrl;
+	@Value("${jira.tickets-url}")
+	private String ticketsLoadingUrl;
+	public HttpHeaders jiraGetHeaders() {
+		String auth = username + ":" + secret;
+		byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
+		String authHeader = "Basic " + new String(encodedAuth);
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", authHeader);
+		return headers;
+	}
+
+	@GetMapping("/tickets.getIssue")
+	public ResponseEntity<String> getIssue() {
+		ResponseEntity<String> response = restTemplate.exchange(
+				"https://test1app2koko3.atlassian.net/rest/api/2/issue/10006", HttpMethod.GET, new HttpEntity(jiraGetHeaders()), String.class);
+
+		return new ResponseEntity<String>(response.getBody(), HttpStatus.ACCEPTED);
+	}
+
+
+
+	/*
+	query Parameters
+	from
+	string
+
+	Retrieve results starting with this date
+	to
+	string
+
+	Retrieve results up to and including this date
+	updatedFrom
+	string
+
+	Retrieve results that have been updated from this date
+	offset
+	integer <int32>
+	Default: 0
+
+	Skip over a number of elements by specifying an offset value for the query
+	limit
+	integer <int32>
+	Default: 50
+
+	Limit the number of elements on the response
+
+	 */
+
 	@GetMapping("/tickets.get")
 	public ResponseEntity<String> loadJiraTickets() {
 
