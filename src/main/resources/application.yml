@@ -1,5 +1,6 @@
 jira:
   secret: l9gAcoGVCl7KiDxsqydhA833
+  tempo-secret: fFky1JDT3PknzqV47DKEau1DKxi751
   user-name: wowbrosomeonestolemyname@gmail.com
   base-url: https://test1app2koko3.atlassian.net
   ticket-url: /rest/api/2/issue

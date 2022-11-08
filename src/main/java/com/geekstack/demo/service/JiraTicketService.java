@@ -54,6 +54,7 @@ public class JiraTicketService {
 	}
 
 	public String getJiraTickets() {
+
 		System.out.println(baseUrl.concat(ticketsLoadingUrl));
 		ResponseEntity<String> response = restTemplate.exchange(baseUrl.concat(ticketsLoadingUrl), HttpMethod.GET,
 				new HttpEntity<Tickets>(getHeaders()), String.class);
