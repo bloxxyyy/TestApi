@@ -1,2 +1,2 @@
 # Jirademo
-How to create a jira ticket using rest template
+Syncing Jira issues between Jira instances using Tempo Api and worksheets
